@@ -1,1 +1,1 @@
-web: gunicorn flask-cov-stats:app
+web: gunicorn run:app
