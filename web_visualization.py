@@ -5,6 +5,7 @@ import pathlib
 import json
 import os
 import glob
+from flask_frozen import Freezer
 from flask import Flask, render_template, request, url_for
 
 
@@ -238,6 +239,6 @@ def com_page(path="/help/combinated.html"):
     return render_template(path)
 
 
-    
+
 if __name__ == "__main__":
     app.run()
