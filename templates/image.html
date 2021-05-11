@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.8.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='stylesheet.css') }}"/>
+  <style></style>
+</head>
+<script>
+  function embedPlot(divId, jsonFile){
+    var spec = jsonFile;
+    var embedOpt = {"mode": "vega-lite"};
+    const el = document.getElementById(divId);
+    vegaEmbed("#"+divId, spec, embedOpt)
+    }
+</script>
+<body>
+  <center>
+    <h1>Coronastatistikk for 2020</h1>
+    
+    <a href= {{ url_for('help_page') }}>Help</a>
+  <form>
+    <select name= counties method="GET" action="/">
+      {% for county in counties %}
+      <option value= "{{ county }}" SELECTED>{{ county.capitalize().replace('_', ' ')[:-4] }}</option>"
+      {% endfor %}
+      <input type="submit" value="Submit">
+    </select>
+  </form>
+  <hr>
+  
+  <div class="container">
+    <div class="item" id="vis"></div>
+    <div class="item" id="vis2"></div>
+    <div class="item" id="vis3"></div>
+    <div class="item" id="vis4"></div>
+  </div>
+  
+  
+  <script>
+  
+    embedPlot('vis', {{ json | safe }})
+    embedPlot('vis2', {{ json2 | safe }})
+    embedPlot('vis3', {{ json3 | safe }})
+    embedPlot('vis4', {{ json4 | safe }})
+    
+
+  </script>
+</body>
+</html>
