@@ -1,5 +1,5 @@
 
-Deployed at https://flask-cov-stats.herokuapp.com/
+Hosted at https://flask-cov-stats.herokuapp.com/
 # Covid-19 Norway statistics using Python+Flask
 Visualization: Altair + vega
 
