@@ -3,6 +3,8 @@ Hosted at https://flask-cov-stats.herokuapp.com/
 # Covid-19 Norway statistics using Python+Flask
 Visualization: Altair + vega
 
+Covid data from FHI (https://www.fhi.no/en/id/infectious-diseases/coronavirus/daily-reports/daily-reports-COVID19/)
+
 Help/documentation page was made with Sphinx (https://www.sphinx-doc.org/en/master/)
 ## Install prerequisites
 #### packages can be installed with given signature:
