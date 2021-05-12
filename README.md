@@ -9,9 +9,8 @@ Visualization: Altair + vega
 #### packages can be installed with given signature:
 ##### conda:
 	conda install -c conda-forge [PACKAGE]
-##### pip:
+##### pip (for ordinary python):
 	pip install [PACKAGE]
-
 
 
 #### python altair module (run with 4.1.0)
@@ -20,7 +19,7 @@ Visualization: Altair + vega
 	flask
     
 ### Run webapp
-#### /app/web_visualization.py
+#### /app/wmain.py
 	[py/PATH_TO_python.exe] main.py
 default url is http://127.0.0.1:5000/
 ### Plot implementation documentation is available at help page (on webapp)
