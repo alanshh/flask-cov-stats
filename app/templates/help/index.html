@@ -4,8 +4,25 @@
 <html>
   <head>
     <meta charset="utf-8" />
-  </head>
-  <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Covid statistics Flask visualization’s documentation! &#8212; Covid statistics Flask visualization  documentation</title>
+    <link rel="stylesheet" href="../static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="../static/documentation_options.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/underscore.js"></script>
+    <script src="../static/doctools.js"></script>
+    <script src="../static/language_data.js"></script>
+    <link rel="index" title="Index" href="/help/genindex.html" />
+   
+  <link rel="stylesheet" href="../static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
@@ -13,29 +30,149 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-corona-visualization-help-s-documentation">
-<h1>Welcome to Corona visualization help’s documentation!<a class="headerlink" href="#welcome-to-corona-visualization-help-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="create-plots">
-<h2>Create plots<a class="headerlink" href="#create-plots" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="module-main">
+<span id="welcome-to-covid-statistics-flask-visualization-s-documentation"></span><h1>Welcome to Covid statistics Flask visualization’s documentation!<a class="headerlink" href="#module-main" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="main.display_covid_county_data">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">display_covid_county_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.display_covid_county_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all types of plots and renders them on a html template.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>html(str): returns the rendered html in string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main.plotData">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">plotData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">statType</span></em>, <em class="sig-param"><span class="n">countyfile</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.plotData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots reported or cumulative Covid-19 cases on respectively a bar or line chart
+and returns it as json dictionary and altair chart class. With time range functionality.</p>
+<dl>
+<dt><strong>Args</strong>:</dt><dd><p><em>statType(str)</em>: specifies type of statistic. Decides whether to create ‘cumulative’ or ‘reported’ type of chart</p>
+<p><em>countyfile(str)</em>: name of csv file to read data from. By default, file with all county data is used</p>
+<p><em>start(str</em>: optional: the start date of the chart timeline. By default the start of csv file. Format: DD.MM.YYYY</p>
+<p><em>end(str)</em>: optional: the end date of the chart timeline. By default the end of csv file. Format: DD.MM.YYYY</p>
+<p>example: plotData(“reported”, “agder.csv”, start=’23.05.2020’, end=’30.10.2020’)</p>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><p><em>jsonDict(dict)</em>: plot json structure
+<em>chart(altair.Chart)</em>: the generated chart in altair chart class structure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main.plot_both">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">plot_both</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">countyfile</span><span class="o">=</span><span class="default_value">'alle_fylker.csv'</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.plot_both" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots both cumulative and reported cases from given covid-19 data csv file
+to one illustration using, respectively, a line chart and bar chart
+and returns as json dictionary.</p>
+<dl>
+<dt><strong>Args</strong>:</dt><dd><p><em>countyfile(str)</em>: name of csv file</p>
+<p><em>start(str)</em>: optional: the start date of the bar chart timeline. By default the start of csv file. Format: DD.MM.YYYY</p>
+<p><em>end(str)</em>: optional: the end date of the bar chart timeline. By default the end of csv file. Format: DD.MM.YYYY</p>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><p><em>jsonDict(str)</em>: plot json structure in dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main.plot_cumulative_cases">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">plot_cumulative_cases</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">countyfile</span><span class="o">=</span><span class="default_value">'alle_fylker.csv'</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.plot_cumulative_cases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots all cumulative cases from given covid-19 data csv file to a line chart
+and returns it as json dictionary and altair chart clas.</p>
+<dl>
+<dt><strong>Args</strong>:</dt><dd><p><em>countyfile(str)</em>: name of csv file</p>
+<p><em>start(str)</em>: optional: the start date of the bar chart timeline. By default the start of csv file. Format: DD.MM.YYYY</p>
+<p><em>end(str)</em>: optional: the end date of the bar chart timeline. By default the end of csv file. Format: DD.MM.YYYY</p>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><p><em>jsonDict(dict)</em>: plot json structure
+<em>chart(altair.Chart)</em>: the generated chart in altair chart class structure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main.plot_norway">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">plot_norway</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.plot_norway" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots number of cases per 100k on each county on a chart depicting Norway.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>jsonDict(dict): plot json structure in dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main.plot_reported_cases">
+<code class="sig-prename descclassname">main.</code><code class="sig-name descname">plot_reported_cases</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">countyfile</span><span class="o">=</span><span class="default_value">'alle_fylker.csv'</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.plot_reported_cases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots all reported cases from given covid-19 data csv file to a bar chart
+and returns it as json dictionary and altair chart clas.</p>
+<dl>
+<dt><strong>Args</strong>:</dt><dd><p><em>countyfile(str)</em>: name of csv file</p>
+<p><em>start(str)</em>: optional: the start date of the bar chart timeline. By default the start of csv file. Format: DD.MM.YYYY</p>
+<p><em>end(str)</em>: optional: the end date of the bar chart timeline.By default the end of csv file. Format: DD.MM.YYYY</p>
+</dd>
+<dt><strong>Returns</strong>:</dt><dd><p><em>jsonDict(dict)</em>: plot json structure
+<em>chart(altair.Chart)</em>: the generated chart in altair chart class structure</p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href={{ url_for('com_page') }}>Create plot for cumulative and reported cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href={{ url_for('c_page') }}>Create plot for cumulative cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href={{ url_for('r_page') }}>Create plot for reported cases</a></li>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="/help/genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="/help/py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 </ul>
 </div>
-</div>
-</div>
+
+
           </div>
           
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Covid statistics Flask visualization</a></h1>
+
+
+
+
+
+
+
+
+
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
 
         </div>
       </div>
       <div class="clearer"></div>
-    </div> 
+    </div>
+    <div class="footer">
+      &copy;2021, alanshh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
   </body>
 </html>

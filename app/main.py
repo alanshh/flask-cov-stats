@@ -18,10 +18,8 @@ def plotData(statType, countyfile, start=None, end=None):
     Args:
         statType(str): specifies type of statistic. Decides whether to create 'cumulative' or 'reported' type of chart
         countyfile(str): name of csv file to read data from. By default, file with all county data is used
-        start(str): optional: the start date of the chart timeline.
-            By default the start of csv file. Format: DD.MM.YYYY
-        end(str): optional: the end date of the chart timeline. 
-            By default the end of csv file. Format: DD.MM.YYYY
+        start(str): optional: the start date of the chart timeline. By default the start of csv file. Format: DD.MM.YYYY
+        end(str): optional: the end date of the chart timeline. By default the end of csv file. Format: DD.MM.YYYY
         
         example: plotData("reported", "agder.csv", start='23.05.2020', end='30.10.2020')
     Returns:
@@ -78,10 +76,8 @@ def plot_reported_cases(countyfile="alle_fylker.csv", start=None, end=None):
     
     Args:
         countyfile(str): name of csv file
-        start(str): optional: the start date of the bar chart timeline. 
-            By default the start of csv file. Format: DD.MM.YYYY
-        end(str): optional: the end date of the bar chart timeline.
-            By default the end of csv file. Format: DD.MM.YYYY
+        start(str): optional: the start date of the bar chart timeline. By default the start of csv file. Format: DD.MM.YYYY
+        end(str): optional: the end date of the bar chart timeline.By default the end of csv file. Format: DD.MM.YYYY
 
     Returns:
         jsonDict(dict): plot json structure
@@ -96,10 +92,8 @@ def plot_cumulative_cases(countyfile="alle_fylker.csv", start=None, end=None):
     
     Args:
         countyfile(str): name of csv file
-        start(str): optional: the start date of the bar chart timeline. 
-            By default the start of csv file. Format: DD.MM.YYYY
-        end(str): optional: the end date of the bar chart timeline. 
-            By default the end of csv file. Format: DD.MM.YYYY
+        start(str): optional: the start date of the bar chart timeline. By default the start of csv file. Format: DD.MM.YYYY
+        end(str): optional: the end date of the bar chart timeline. By default the end of csv file. Format: DD.MM.YYYY
     Returns:
         jsonDict(dict): plot json structure
         chart(altair.Chart): the generated chart in altair chart class structure
@@ -115,10 +109,8 @@ def plot_both(countyfile="alle_fylker.csv", start=None, end=None):
      
     Args:
         countyfile(str): name of csv file
-        start(str): optional: the start date of the bar chart timeline. 
-            By default the start of csv file. Format: DD.MM.YYYY
-        end(str): optional: the end date of the bar chart timeline. 
-            By default the end of csv file. Format: DD.MM.YYYY
+        start(str): optional: the start date of the bar chart timeline. By default the start of csv file. Format: DD.MM.YYYY
+        end(str): optional: the end date of the bar chart timeline. By default the end of csv file. Format: DD.MM.YYYY
     Returns:
         jsonDict(str): plot json structure in dictionary
     """
@@ -200,7 +192,7 @@ def display_covid_county_data():
     Gets all types of plots and renders them on a html template.
 
     Returns:
-        html(str): returns the rendered html in string
+        *html(str)*: returns the rendered html in string
     """
 
     county = request.args.get('counties')
@@ -226,17 +218,14 @@ def display_covid_county_data():
 def help_page(path="/help/index.html"):
     return render_template(path)
 
-@app.route("/help/cumulative_plots", methods=['GET'])
-def c_page(path="/help/cumulative.html"):
+@app.route("/help/genindex.html", methods=['GET'])
+def c_page(path="/help/genindex.html"):
     return render_template(path)
 
-@app.route("/help/reported_plots", methods=['GET'])
-def r_page(path="/help/reported.html"):
+@app.route("/help/py-modindex.html", methods=['GET'])
+def com_page(path="/help/py-modindex.html"):
     return render_template(path)
 
-@app.route("/help/combinated_plots", methods=['GET'])
-def com_page(path="/help/combinated.html"):
-    return render_template(path)
 
 
 
