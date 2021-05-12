@@ -1,12 +1,13 @@
 import pandas as pd
 import altair as alt
+from vega_datasets import data
 import matplotlib.pyplot as plt
 import pathlib
 import json
 import os
 import glob
 from flask_frozen import Freezer
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request
 
 
 
@@ -36,6 +37,8 @@ def plotData(statType, countyfile, start=None, end=None):
         raise ValueError("Specify a statistic type of reported or cumulative case")
     #create dataframe from given csv file (standard is alle_fylker.csv)
     data = pd.read_csv(countyDir+countyfile, usecols=['Dato', statTypeDict[statType]], dayfirst=True, infer_datetime_format=True, parse_dates=['Dato'])
+    
+
     #if date ranges are not set
     if start is None:
         start = data['Dato'].iloc[0]
@@ -58,11 +61,14 @@ def plotData(statType, countyfile, start=None, end=None):
         title=statTypeDict[statType]+" i "+countyfile.capitalize().replace('_',' ')[:-4]
     ).interactive()
 
+
      #Generate appropriate type of chart
     if(statType == "reported"):
-        chart = chart.mark_bar().encode(color=statTypeDict[statType])
+        chart = chart.mark_bar()#.encode(color=statTypeDict[statType])
     else:
         chart = chart.mark_area()
+
+    
 
     #Save to file and return json string
     json = chart.to_json()
@@ -114,11 +120,9 @@ def plot_both(countyfile="alle_fylker.csv", start=None, end=None):
     Returns:
         jsonDict(str): plot json structure in dictionary
     """
-
     #get both plots
     reported = plot_reported_cases(countyfile, start, end)[1]
-    cumulative = plot_cumulative_cases(countyfile, start, end)[1].mark_line()
-
+    cumulative = plot_cumulative_cases(countyfile, start, end)[1]
 
     reported = reported.encode(
         alt.Y('Nye tilfeller',
@@ -128,8 +132,8 @@ def plot_both(countyfile="alle_fylker.csv", start=None, end=None):
         alt.Y('Kumulativt antall',axis=alt.Axis(title='Kumulativt antall', titleColor='red')),
         color=alt.value('red')
     )
-    combo = alt.layer(reported, cumulative).resolve_scale(y = 'independent').properties(
-         title="Kumulativt antall og nye tilfeller av smittede"
+    combo = alt.layer(cumulative, reported).properties(
+         title="Kumulativt antall og nye tilfeller av smittede i "+countyfile.capitalize().replace('_',' ')[:-4]
     )
     
 
