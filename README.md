@@ -2,6 +2,7 @@
 Deployed at https://flask-cov-stats.herokuapp.com/
 # Covid-19 Norway statistics using Python+Flask
 Visualization: Altair + vega
+
 Help/documentation page was made with Sphinx (https://www.sphinx-doc.org/en/master/)
 ## Install prerequisites
 #### packages can be installed with given signature:
