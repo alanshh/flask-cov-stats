@@ -6,7 +6,6 @@ Visualization: Altair + vega
 
 Covid data from FHI (https://www.fhi.no/en/id/infectious-diseases/coronavirus/daily-reports/daily-reports-COVID19/)
 
-Help/documentation page was made with help from Sphinx (https://www.sphinx-doc.org/en/master/)
 ## Install prerequisites
 ### Run with python 3.8.3 (anaconda):
 	https://www.anaconda.com/products/individual
